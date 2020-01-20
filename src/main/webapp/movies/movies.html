@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Movies</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>
+                    <input id="titleFld"/>
+                </th>
+                <th>
+                    <button id="createBtn">
+                        Create
+                    </button>
+                    <button id="updateBtn">
+                        Update
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr id="templateRow" class="movieRow" style="display:none;">
+                <td class="movieTitle">
+                    Movie Title
+                </td>
+                <td>
+                    <button class="deleteBtn">
+                        Delete
+                    </button>
+                    <button class="selectBtn">
+                        Select
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script src="./movies.service.js"></script>
+    <script src="./movies.controller.js"></script>
+</body>
+</html>

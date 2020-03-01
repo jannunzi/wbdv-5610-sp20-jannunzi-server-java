@@ -1,6 +1,8 @@
 package com.example.wbdvsp20jannunziserverjava.services;
 
+import com.example.wbdvsp20jannunziserverjava.models.Topic;
 import com.example.wbdvsp20jannunziserverjava.models.Widget;
+import com.example.wbdvsp20jannunziserverjava.repositories.TopicRepository;
 import com.example.wbdvsp20jannunziserverjava.repositories.WidgetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,12 @@ public class WidgetService {
     @Autowired
     WidgetRepository widgetRepository;
 
-    public Widget createWidget(Widget widget) {
+    @Autowired
+    TopicRepository topicRepository;
+
+    public Widget createWidget(Integer topicId, Widget widget) {
+        Topic topic = topicRepository.findById(topicId).get();
+        widget.setTopic(topic);
         return widgetRepository.save(widget);
     }
 
@@ -29,7 +36,9 @@ public class WidgetService {
     }
 
     public List<Widget> findWidgetsForTopic(Integer topicId) {
-        return widgetRepository.findWidgetsForTopic(topicId);
+        Topic topic = topicRepository.findById(topicId).get();
+        return topic.getWidgets();
+//        return widgetRepository.findWidgetsForTopic(topicId);
     }
 
     public List<Widget> findAllWidgets() {

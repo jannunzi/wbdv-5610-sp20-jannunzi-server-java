@@ -5,6 +5,7 @@ import com.example.wbdvsp20jannunziserverjava.services.WidgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @RestController
@@ -19,17 +20,16 @@ public class WidgetController {
         Widget w1 = new Widget();
         w1.setTitle("New Widget");
         w1.setSize(4);
-        return service.createWidget(w1);
+        return service.createWidget(1, w1);
     }
 
 
 
     @PostMapping("/api/topics/{tid}/widgets")
     public Widget createWidget(
-            @PathVariable("tid") String topicId,
+            @PathVariable("tid") Integer topicId,
             @RequestBody Widget widget) {
-        widget.setTopicId(topicId);
-        return service.createWidget(widget);
+        return service.createWidget(topicId, widget);
     }
 
     @GetMapping("/api/delete/widgets/{widgetId}")

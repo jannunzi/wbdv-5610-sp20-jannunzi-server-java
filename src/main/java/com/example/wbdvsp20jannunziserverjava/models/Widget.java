@@ -1,5 +1,7 @@
 package com.example.wbdvsp20jannunziserverjava.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,9 +13,20 @@ public class Widget {
     private Integer id;
 
     private String title = "New Widget";
-    private String topicId;
     private String type = "HEADING";
     private int size = 2;
+
+    @ManyToOne
+    @JsonIgnore
+    private Topic topic;
+
+    public Topic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
 
     public int getSize() {
         return size;
@@ -29,14 +42,6 @@ public class Widget {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getTopicId() {
-        return topicId;
-    }
-
-    public void setTopicId(String topicId) {
-        this.topicId = topicId;
     }
 
     public Integer getId() {
